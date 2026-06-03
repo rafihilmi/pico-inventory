@@ -12,6 +12,7 @@ class BarangController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $categoryFilter = $request->input('kategori');
         
         $query = Barang::with(['kategori', 'satuan']);
         
@@ -19,10 +20,14 @@ class BarangController extends Controller
             $query->where('nama_barang', 'like', "%{$search}%");
         }
         
+        if ($categoryFilter) {
+            $query->where('id_kategori', $categoryFilter);
+        }
+        
         $barangs = $query->get();
         $kategoris = Kategori::all();
         $satuans = Satuan::all();
-        return view('barang.index', compact('barangs', 'kategoris', 'satuans', 'search'));
+        return view('barang.index', compact('barangs', 'kategoris', 'satuans', 'search', 'categoryFilter'));
     }
 
     public function create()

@@ -43,8 +43,16 @@
                     </a>
                 </div>
                 <form action="{{ route('barang-keluar.index') }}" method="GET" class="flex gap-2 w-full sm:w-auto">
+                    <select name="kategori" class="border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                        <option value="">Semua Kategori</option>
+                        @foreach($kategoris as $k)
+                            <option value="{{ $k->id_kategori }}" {{ (isset($categoryFilter) && $categoryFilter == $k->id_kategori) ? 'selected' : '' }}>
+                                {{ $k->nama }}
+                            </option>
+                        @endforeach
+                    </select>
                     <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari barang/pelanggan..." class="flex-1 sm:w-64 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
-                    <button type="submit" class="bg-[#3c8dbc] hover:bg-[#367fa9] text-white px-3 py-1.5 btn-sq text-sm">Cari</button>
+                    <button type="submit" class="bg-[#3c8dbc] hover:bg-[#367fa9] text-white px-3 py-1.5 btn-sq text-sm">Filter</button>
                 </form>
             </div>
 

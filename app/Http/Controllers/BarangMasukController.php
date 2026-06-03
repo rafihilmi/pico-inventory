@@ -12,8 +12,9 @@ class BarangMasukController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
+        $categoryFilter = $request->input('kategori');
 
-        $query = BarangMasuk::with(['barang', 'supplier'])->latest();
+        $query = BarangMasuk::with(['barang.kategori', 'supplier'])->latest();
 
         if ($search) {
             $query->whereHas('barang', function($q) use ($search) {
@@ -23,10 +24,17 @@ class BarangMasukController extends Controller
             });
         }
 
+        if ($categoryFilter) {
+            $query->whereHas('barang', function($q) use ($categoryFilter) {
+                $q->where('id_kategori', $categoryFilter);
+            });
+        }
+
         $barangMasuks = $query->get();
         $barangs = Barang::all();
         $suppliers = Supplier::all();
-        return view('barang_masuk.index', compact('barangMasuks', 'barangs', 'suppliers', 'search'));
+        $kategoris = \App\Models\Kategori::all();
+        return view('barang_masuk.index', compact('barangMasuks', 'barangs', 'suppliers', 'kategoris', 'search', 'categoryFilter'));
     }
 
     public function create()
