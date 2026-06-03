@@ -31,14 +31,20 @@
         </div>
         
         <div class="p-4">
-            <div class="flex gap-2 mb-4">
-                <button @click="showModal = true" class="bg-[#5bc0de] hover:bg-[#31b0d5] text-white px-3 py-1.5 btn-sq text-sm flex items-center gap-1">
-                    Tambah
-                </button>
-                <a href="{{ route('satuan.index') }}" class="bg-[#f4f4f4] border border-[#ddd] hover:bg-[#e7e7e7] text-gray-700 px-3 py-1.5 btn-sq text-sm flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                    Refresh
-                </a>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                <div class="flex gap-2">
+                    <button @click="showModal = true" class="bg-[#5bc0de] hover:bg-[#31b0d5] text-white px-3 py-1.5 btn-sq text-sm flex items-center gap-1">
+                        Tambah
+                    </button>
+                    <a href="{{ route('satuan.index') }}" class="bg-[#f4f4f4] border border-[#ddd] hover:bg-[#e7e7e7] text-gray-700 px-3 py-1.5 btn-sq text-sm flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        Refresh
+                    </a>
+                </div>
+                <form action="{{ route('satuan.index') }}" method="GET" class="flex gap-2 w-full sm:w-auto">
+                    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari satuan..." class="flex-1 sm:w-64 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <button type="submit" class="bg-[#3c8dbc] hover:bg-[#367fa9] text-white px-3 py-1.5 btn-sq text-sm">Cari</button>
+                </form>
             </div>
 
             <div class="overflow-x-auto">

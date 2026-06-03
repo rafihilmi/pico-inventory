@@ -7,10 +7,15 @@ use App\Models\Kategori;
 
 class KategoriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kategoris = Kategori::all();
-        return view('kategori.index', compact('kategoris'));
+        $search = $request->input('search');
+        $query = Kategori::query();
+        if ($search) {
+            $query->where('nama', 'like', "%{$search}%")->orWhere('kode', 'like', "%{$search}%");
+        }
+        $kategoris = $query->get();
+        return view('kategori.index', compact('kategoris', 'search'));
     }
 
     public function store(Request $request)

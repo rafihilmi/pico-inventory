@@ -20,13 +20,13 @@
     <!-- Top Navbar -->
     <header class="bg-[#222831] h-14 flex items-center justify-between px-6 text-white shrink-0 z-10">
         <div class="flex items-center gap-6">
-            <div class="font-extrabold text-xl tracking-wider">Pico</div>
+            <div class="font-extrabold text-xl tracking-wider">Pico Inventory</div>
         </div>
         <div class="flex items-center gap-2">
             <div class="w-8 h-8 bg-gray-500 rounded-full overflow-hidden flex items-center justify-center">
                 <svg class="w-5 h-5 text-gray-200" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
             </div>
-            <span class="text-sm font-medium">{{ auth()->check() ? auth()->user()->name : 'Pico' }}</span>
+            <span class="text-sm font-medium">{{ auth()->check() ? auth()->user()->name : 'Pico Inventory' }}</span>
         </div>
     </header>
 

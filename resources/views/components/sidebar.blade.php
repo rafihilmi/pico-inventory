@@ -6,6 +6,7 @@
  elseif (request()->routeIs('kategori.*') || request()->routeIs('satuan.*')) $initialMenu = 'atribut';
  elseif (request()->routeIs('barang-masuk.*') || request()->routeIs('barang-keluar.*')) $initialMenu = 'aktivitas';
  elseif (request()->routeIs('supplier.*') || request()->routeIs('pelanggan.*')) $initialMenu = 'supp_pel';
+ elseif (request()->routeIs('laporan.*')) $initialMenu = 'laporan';
 @endphp
 
 <aside class="w-64 h-full bg-[#222d32] text-[#b8c7ce] flex flex-col font-sans shrink-0">
@@ -78,6 +79,11 @@
  <a href="{{ route('pelanggan.index') }}" class="block px-10 py-2 text-sm hover:text-white {{ request()->routeIs('pelanggan.index') ? 'text-white' : 'text-[#8aa4af]' }}">&circlearrowright; Data Pelanggan</a>
  </div>
  </div>
+
+ <a href="{{ route('laporan.index') }}" class="px-5 py-3 flex items-center gap-3 border-l-4 transition-colors {{ request()->routeIs('laporan.index') ? 'bg-[#1e282c] text-white border-[#3c8dbc]' : 'border-transparent hover:bg-[#1e282c] hover:text-white' }}">
+ <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+ <span class="text-sm">Laporan</span>
+ </a>
 
  </nav>
 

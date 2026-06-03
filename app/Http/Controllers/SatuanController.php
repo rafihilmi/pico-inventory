@@ -7,10 +7,15 @@ use App\Models\Satuan;
 
 class SatuanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $satuans = Satuan::all();
-        return view('satuan.index', compact('satuans'));
+        $search = $request->input('search');
+        $query = Satuan::query();
+        if ($search) {
+            $query->where('nama', 'like', "%{$search}%")->orWhere('kode', 'like', "%{$search}%");
+        }
+        $satuans = $query->get();
+        return view('satuan.index', compact('satuans', 'search'));
     }
 
     public function store(Request $request)

@@ -10,6 +10,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::middleware('auth')->group(function () {
     // Atribut Barang
     Route::resource('kategori', KategoriController::class);
     Route::resource('satuan', SatuanController::class);
+
+    // Laporan
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 });

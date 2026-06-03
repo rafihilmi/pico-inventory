@@ -9,12 +9,24 @@ use Illuminate\Http\Request;
 
 class BarangKeluarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barangKeluars = BarangKeluar::with(['barang', 'pelanggan'])->latest()->get();
+        $search = $request->input('search');
+
+        $query = BarangKeluar::with(['barang', 'pelanggan'])->latest();
+
+        if ($search) {
+            $query->whereHas('barang', function($q) use ($search) {
+                $q->where('nama_barang', 'like', "%{$search}%");
+            })->orWhereHas('pelanggan', function($q) use ($search) {
+                $q->where('nama_pelanggan', 'like', "%{$search}%");
+            });
+        }
+
+        $barangKeluars = $query->get();
         $barangs = Barang::all();
         $pelanggans = Pelanggan::all();
-        return view('barang_keluar.index', compact('barangKeluars', 'barangs', 'pelanggans'));
+        return view('barang_keluar.index', compact('barangKeluars', 'barangs', 'pelanggans', 'search'));
     }
 
     public function create()
