@@ -61,10 +61,13 @@
                     <thead>
                         <tr>
                             <th class="px-2 py-2 text-left w-24">Action</th>
-                            <th class="px-3 py-2 text-left">Nama Item</th>
-                            <th class="px-3 py-2 text-left">Kategori</th>
-                            <th class="px-3 py-2 text-left">Stok</th>
+                            <th class="px-3 py-2 text-left">SKU</th>
+                            <th class="px-3 py-2 text-left">Nama Barang</th>
                             <th class="px-3 py-2 text-left">Satuan</th>
+                            <th class="px-3 py-2 text-left">Kategori</th>
+                            <th class="px-3 py-2 text-left">Lokasi</th>
+                            <th class="px-3 py-2 text-left">Keterangan</th>
+                            <th class="px-3 py-2 text-left">Stok</th>
                             <th class="px-3 py-2 text-left">Status</th>
                         </tr>
                     </thead>
@@ -73,7 +76,7 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-2 py-2">
                                 <div class="flex gap-1">
-                                    <button @click="showEditModal = true; editData = { id: '{{ $b->id_barang }}', nama_barang: '{{ addslashes($b->nama_barang) }}', id_kategori: '{{ $b->id_kategori }}', id_satuan: '{{ $b->id_satuan }}', stok: '{{ $b->stok }}', stok_minimum: '{{ $b->stok_minimum }}' }" class="bg-[#00a65a] text-white p-1 btn-sq hover:bg-[#008d4c]" title="Edit">
+                                    <button @click="showEditModal = true; editData = { id: '{{ $b->id_barang }}', sku: '{{ addslashes($b->sku) }}', nama_barang: '{{ addslashes($b->nama_barang) }}', id_kategori: '{{ $b->id_kategori }}', id_satuan: '{{ $b->id_satuan }}', lokasi: '{{ addslashes($b->lokasi) }}', keterangan: '{{ addslashes($b->keterangan) }}', stok: '{{ $b->stok }}', stok_minimum: '{{ $b->stok_minimum }}' }" class="bg-[#00a65a] text-white p-1 btn-sq hover:bg-[#008d4c]" title="Edit">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                     </button>
                                     <form action="{{ route('barang.destroy', $b->id_barang) }}" method="POST" onsubmit="return confirm('Hapus item inventory ini?')">
@@ -85,10 +88,13 @@
                                     </form>
                                 </div>
                             </td>
+                            <td class="px-3 py-2 text-gray-800">{{ $b->sku }}</td>
                             <td class="px-3 py-2 text-gray-800">{{ $b->nama_barang }}</td>
-                            <td class="px-3 py-2 text-gray-800">{{ $b->kategori ? $b->kategori->nama : '-' }}</td>
-                            <td class="px-3 py-2 text-gray-800">{{ $b->stok }}</td>
                             <td class="px-3 py-2 text-gray-800">{{ $b->satuan ? $b->satuan->nama : '-' }}</td>
+                            <td class="px-3 py-2 text-gray-800">{{ $b->kategori ? $b->kategori->nama : '-' }}</td>
+                            <td class="px-3 py-2 text-gray-800">{{ $b->lokasi }}</td>
+                            <td class="px-3 py-2 text-gray-800">{{ $b->keterangan }}</td>
+                            <td class="px-3 py-2 text-gray-800">{{ $b->stok }}</td>
                             <td class="px-3 py-2">
                                 @if($b->stok <= $b->stok_minimum)
                                 <span class="bg-[#dd4b39] text-white text-[10px] px-2 py-0.5 btn-sq uppercase font-bold">Kritis</span>
@@ -99,7 +105,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="px-3 py-4 text-center text-gray-400">Belum ada data inventory di gudang.</td>
+                            <td colspan="9" class="px-3 py-4 text-center text-gray-400">Belum ada data inventory di gudang.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -119,6 +125,12 @@
             <form action="{{ route('barang.store') }}" method="POST">
                 @csrf
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">SKU</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="sku" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    </div>
+
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Nama Barang</label>
                         <span class="mr-2 text-gray-600">:</span>
@@ -158,6 +170,18 @@
                         <span class="mr-2 text-gray-600">:</span>
                         <input type="number" name="stok_minimum" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                     </div>
+
+                    <div class="flex items-center">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">Lokasi</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="lokasi" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    </div>
+
+                    <div class="flex items-center md:col-span-2">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">Keterangan</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="keterangan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    </div>
                 </div>
 
                 <div class="bg-gray-50 p-4 border-t border-gray-200 flex gap-2">
@@ -190,6 +214,12 @@
                 @csrf
                 @method('PUT')
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">SKU</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="sku" x-model="editData.sku" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    </div>
+
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Nama Barang</label>
                         <span class="mr-2 text-gray-600">:</span>
@@ -226,6 +256,18 @@
                         <label class="w-32 text-sm text-gray-600 shrink-0">Batas Minimum</label>
                         <span class="mr-2 text-gray-600">:</span>
                         <input type="number" name="stok_minimum" x-model="editData.stok_minimum" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    </div>
+
+                    <div class="flex items-center">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">Lokasi</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="lokasi" x-model="editData.lokasi" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    </div>
+
+                    <div class="flex items-center md:col-span-2">
+                        <label class="w-32 text-sm text-gray-600 shrink-0">Keterangan</label>
+                        <span class="mr-2 text-gray-600">:</span>
+                        <input type="text" name="keterangan" x-model="editData.keterangan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
                     </div>
                 </div>
 

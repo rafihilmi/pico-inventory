@@ -33,9 +33,12 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'sku'           => 'nullable|string|max:255',
             'nama_barang'   => 'required|string|max:255',
             'id_kategori'   => 'required|exists:kategoris,id_kategori',
             'id_satuan'     => 'required|exists:satuans,id_satuan',
+            'lokasi'        => 'nullable|string|max:255',
+            'keterangan'    => 'nullable|string',
             'stok'          => 'required|integer|min:0',
             'stok_minimum'  => 'required|integer|min:0',
         ]);
@@ -49,9 +52,12 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'sku'           => 'nullable|string|max:255',
             'nama_barang'   => 'required|string|max:255',
             'id_kategori'   => 'required|exists:kategoris,id_kategori',
             'id_satuan'     => 'required|exists:satuans,id_satuan',
+            'lokasi'        => 'nullable|string|max:255',
+            'keterangan'    => 'nullable|string',
             'stok'          => 'required|integer|min:0',
             'stok_minimum'  => 'required|integer|min:0',
         ]);
