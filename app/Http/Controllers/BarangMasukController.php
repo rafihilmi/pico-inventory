@@ -17,10 +17,12 @@ class BarangMasukController extends Controller
         $query = BarangMasuk::with(['barang.kategori', 'supplier'])->latest();
 
         if ($search) {
-            $query->whereHas('barang', function($q) use ($search) {
-                $q->where('nama_barang', 'like', "%{$search}%");
-            })->orWhereHas('supplier', function($q) use ($search) {
-                $q->where('nama_supplier', 'like', "%{$search}%");
+            $query->where(function($q) use ($search) {
+                $q->whereHas('barang', function($q2) use ($search) {
+                    $q2->where('nama_barang', 'like', "%{$search}%");
+                })->orWhereHas('supplier', function($q2) use ($search) {
+                    $q2->where('nama_supplier', 'like', "%{$search}%");
+                });
             });
         }
 

@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Ubah path jadi /inventory tapi nama route tetap barang.*
-    Route::resource('inventory', BarangController::class)->names('barang');
+    Route::resource('inventory', BarangController::class)->except(['create', 'edit'])->names('barang');
     Route::resource('supplier', SupplierController::class);
     Route::resource('pelanggan', PelangganController::class);
     Route::resource('barang-masuk', BarangMasukController::class);

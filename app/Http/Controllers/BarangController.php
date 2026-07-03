@@ -30,11 +30,6 @@ class BarangController extends Controller
         return view('barang.index', compact('barangs', 'kategoris', 'satuans', 'search', 'categoryFilter'));
     }
 
-    public function create()
-    {
-        return view('barang.create');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -49,12 +44,6 @@ class BarangController extends Controller
 
         return redirect()->route('barang.index')
             ->with('success', 'Data Inventory berhasil ditambahkan ke sistem!');
-    }
-
-    public function edit($id)
-    {
-        $barang = Barang::findOrFail($id);
-        return view('barang.edit', compact('barang'));
     }
 
     public function update(Request $request, $id)
