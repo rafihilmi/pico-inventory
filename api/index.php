@@ -23,6 +23,10 @@ $_ENV['VIEW_COMPILED_PATH'] = '/tmp';
 $_ENV['LOG_CHANNEL'] = 'stderr';
 $_ENV['SESSION_DRIVER'] = 'cookie';
 
+// Paksa APP_DEBUG true sementara untuk melihat error asli di Vercel
+putenv('APP_DEBUG=true');
+$_ENV['APP_DEBUG'] = 'true';
+
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
