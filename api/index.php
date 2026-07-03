@@ -32,6 +32,14 @@ require __DIR__.'/../vendor/autoload.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 // Pastikan storage path utama juga mengarah ke /tmp
-$app->useStoragePath('/tmp/storage');
+$storagePath = '/tmp/storage';
+$app->useStoragePath($storagePath);
+
+// Buat direktori yang dibutuhkan Laravel jika belum ada (karena /tmp kosong di Vercel)
+foreach (['framework/views', 'framework/sessions', 'framework/cache/data', 'logs'] as $dir) {
+    if (!is_dir($storagePath . '/' . $dir)) {
+        mkdir($storagePath . '/' . $dir, 0777, true);
+    }
+}
 
 $app->handleRequest(Request::capture());
