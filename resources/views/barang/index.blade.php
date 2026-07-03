@@ -124,23 +124,20 @@
 
             <form action="{{ route('barang.store') }}" method="POST">
                 @csrf
-                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">SKU</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="sku" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">SKU</label>
+                        <input type="text" name="sku" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Nama Barang</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="nama_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Nama Barang <span class="text-red-500">*</span></label>
+                        <input type="text" name="nama_barang" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
                     
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Kategori</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_kategori" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Kategori <span class="text-red-500">*</span></label>
+                        <select name="id_kategori" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                             <option value="" disabled selected>-- Pilih Kategori --</option>
                             @foreach($kategoris as $k)
                             <option value="{{ $k->id_kategori }}">{{ $k->nama }}</option>
@@ -148,10 +145,9 @@
                         </select>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Satuan</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_satuan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Satuan <span class="text-red-500">*</span></label>
+                        <select name="id_satuan" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                             <option value="" disabled selected>-- Pilih Satuan --</option>
                             @foreach($satuans as $s)
                             <option value="{{ $s->id_satuan }}">{{ $s->nama }}</option>
@@ -159,28 +155,24 @@
                         </select>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Stok Awal</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="stok" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Stok Awal <span class="text-red-500">*</span></label>
+                        <input type="number" name="stok" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Batas Minimum</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="stok_minimum" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Batas Minimum <span class="text-red-500">*</span></label>
+                        <input type="number" name="stok_minimum" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Lokasi</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="lokasi" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Lokasi</label>
+                        <input type="text" name="lokasi" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
 
-                    <div class="flex items-center md:col-span-2">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Keterangan</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="keterangan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Keterangan</label>
+                        <input type="text" name="keterangan" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
                 </div>
 
@@ -213,61 +205,53 @@
             <form :action="'{{ route('barang.index') }}/' + editData.id" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">SKU</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="sku" x-model="editData.sku" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">SKU</label>
+                        <input type="text" name="sku" x-model="editData.sku" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Nama Barang</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="nama_barang" x-model="editData.nama_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Nama Barang <span class="text-red-500">*</span></label>
+                        <input type="text" name="nama_barang" x-model="editData.nama_barang" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
                     
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Kategori</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_kategori" x-model="editData.id_kategori" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Kategori <span class="text-red-500">*</span></label>
+                        <select name="id_kategori" x-model="editData.id_kategori" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                             @foreach($kategoris as $k)
                             <option value="{{ $k->id_kategori }}">{{ $k->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Satuan</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_satuan" x-model="editData.id_satuan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Satuan <span class="text-red-500">*</span></label>
+                        <select name="id_satuan" x-model="editData.id_satuan" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                             @foreach($satuans as $s)
                             <option value="{{ $s->id_satuan }}">{{ $s->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Stok Awal</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="stok" x-model="editData.stok" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Stok Awal <span class="text-red-500">*</span></label>
+                        <input type="number" name="stok" x-model="editData.stok" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Batas Minimum</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="stok_minimum" x-model="editData.stok_minimum" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Batas Minimum <span class="text-red-500">*</span></label>
+                        <input type="number" name="stok_minimum" x-model="editData.stok_minimum" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]" required>
                     </div>
 
-                    <div class="flex items-center">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Lokasi</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="lokasi" x-model="editData.lokasi" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Lokasi</label>
+                        <input type="text" name="lokasi" x-model="editData.lokasi" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
 
-                    <div class="flex items-center md:col-span-2">
-                        <label class="w-32 text-sm text-gray-600 shrink-0">Keterangan</label>
-                        <span class="mr-2 text-gray-600">:</span>
-                        <input type="text" name="keterangan" x-model="editData.keterangan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-sm font-semibold text-gray-700">Keterangan</label>
+                        <input type="text" name="keterangan" x-model="editData.keterangan" class="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:border-[#3c8dbc] focus:ring-1 focus:ring-[#3c8dbc]">
                     </div>
                 </div>
 
