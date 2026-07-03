@@ -62,6 +62,7 @@
                         <tr>
                             <th class="px-2 py-2 text-left w-24">Action</th>
                             <th class="px-3 py-2 text-left">Tanggal</th>
+                            <th class="px-3 py-2 text-left">SKU</th>
                             <th class="px-3 py-2 text-left">Nama Barang</th>
                             <th class="px-3 py-2 text-left">Pelanggan</th>
                             <th class="px-3 py-2 text-left">Jumlah</th>
@@ -85,13 +86,14 @@
                                 </div>
                             </td>
                             <td class="px-3 py-2 text-gray-800">{{ date('d M Y', strtotime($bk->tanggal_keluar)) }}</td>
+                            <td class="px-3 py-2 text-gray-800">{{ $bk->barang->sku ?? '-' }}</td>
                             <td class="px-3 py-2 text-gray-800">{{ $bk->barang->nama_barang }}</td>
                             <td class="px-3 py-2 text-gray-800">{{ $bk->pelanggan->nama_pelanggan }}</td>
                             <td class="px-3 py-2 text-gray-800">{{ $bk->jumlah_barang }}</td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="px-3 py-4 text-center text-gray-400">Belum ada data barang keluar.</td>
+                            <td colspan="6" class="px-3 py-4 text-center text-gray-400">Belum ada data barang keluar.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -117,7 +119,7 @@
                         <select name="id_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             <option value="" disabled selected>-- Pilih Item --</option>
                             @foreach($barangs as $b)
-                            <option value="{{ $b->id_barang }}">{{ $b->nama_barang }} (Stok: {{ $b->stok }})</option>
+                            <option value="{{ $b->id_barang }}">[{{ $b->sku ?? '-' }}] {{ $b->nama_barang }} (Stok: {{ $b->stok }})</option>
                             @endforeach
                         </select>
                     </div>
@@ -180,7 +182,7 @@
                         <span class="mr-2 text-gray-600">:</span>
                         <select name="id_barang" x-model="editData.id_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             @foreach($barangs as $b)
-                            <option value="{{ $b->id_barang }}">{{ $b->nama_barang }}</option>
+                            <option value="{{ $b->id_barang }}">[{{ $b->sku ?? '-' }}] {{ $b->nama_barang }}</option>
                             @endforeach
                         </select>
                     </div>

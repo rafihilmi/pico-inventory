@@ -49,6 +49,7 @@
                 <thead>
                     <tr>
                         <th class="px-3 py-2 text-left">Tanggal Masuk</th>
+                        <th class="px-3 py-2 text-left">SKU</th>
                         <th class="px-3 py-2 text-left">Barang</th>
                         <th class="px-3 py-2 text-left">Supplier</th>
                         <th class="px-3 py-2 text-left">Jumlah</th>
@@ -58,13 +59,14 @@
                     @forelse($barangMasuks as $bm)
                     <tr class="hover:bg-gray-50">
                         <td class="px-3 py-2 text-gray-800">{{ \Carbon\Carbon::parse($bm->tanggal_masuk)->format('d-m-Y') }}</td>
+                        <td class="px-3 py-2 text-gray-800">{{ $bm->barang ? $bm->barang->sku : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800">{{ $bm->barang ? $bm->barang->nama_barang : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800">{{ $bm->supplier ? $bm->supplier->nama_supplier : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800 font-semibold text-[#00a65a]">+{{ $bm->jumlah_barang }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-3 py-4 text-center text-gray-400">Tidak ada data barang masuk untuk filter ini.</td>
+                        <td colspan="5" class="px-3 py-4 text-center text-gray-400">Tidak ada data barang masuk untuk filter ini.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -85,6 +87,7 @@
                 <thead>
                     <tr>
                         <th class="px-3 py-2 text-left">Tanggal Keluar</th>
+                        <th class="px-3 py-2 text-left">SKU</th>
                         <th class="px-3 py-2 text-left">Barang</th>
                         <th class="px-3 py-2 text-left">Pelanggan</th>
                         <th class="px-3 py-2 text-left">Jumlah</th>
@@ -94,13 +97,14 @@
                     @forelse($barangKeluars as $bk)
                     <tr class="hover:bg-gray-50">
                         <td class="px-3 py-2 text-gray-800">{{ \Carbon\Carbon::parse($bk->tanggal_keluar)->format('d-m-Y') }}</td>
+                        <td class="px-3 py-2 text-gray-800">{{ $bk->barang ? $bk->barang->sku : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800">{{ $bk->barang ? $bk->barang->nama_barang : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800">{{ $bk->pelanggan ? $bk->pelanggan->nama_pelanggan : '-' }}</td>
                         <td class="px-3 py-2 text-gray-800 font-semibold text-[#dd4b39]">-{{ $bk->jumlah_barang }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-3 py-4 text-center text-gray-400">Tidak ada data barang keluar untuk filter ini.</td>
+                        <td colspan="5" class="px-3 py-4 text-center text-gray-400">Tidak ada data barang keluar untuk filter ini.</td>
                     </tr>
                     @endforelse
                 </tbody>

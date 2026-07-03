@@ -18,7 +18,7 @@
                     </div>
                     <ul class="list-disc list-inside text-red-700 text-sm ml-8">
                         @foreach($listStokKritis->take(5) as $kritis)
-                            <li class="py-0.5"><strong>{{ $kritis->nama_barang }}</strong> - Sisa stok: <strong>{{ $kritis->stok }}</strong></li>
+                            <li class="py-0.5"><strong>[{{ $kritis->sku ?? '-' }}] {{ $kritis->nama_barang }}</strong> - Sisa stok: <strong>{{ $kritis->stok }}</strong></li>
                         @endforeach
                         @if(count($listStokKritis) > 5)
                             <li class="mt-1 italic">...dan {{ count($listStokKritis) - 5 }} item lainnya</li>
@@ -88,6 +88,7 @@
  <thead>
  <tr>
  <th class="px-3 py-2 text-left">Tanggal</th>
+ <th class="px-3 py-2 text-left">SKU</th>
  <th class="px-3 py-2 text-left">Barang</th>
  <th class="px-3 py-2 text-left">Jumlah</th>
  </tr>
@@ -96,12 +97,13 @@
  @forelse($recentMasuk as $bm)
  <tr>
  <td class="px-3 py-2 text-gray-600">{{ date('d M Y', strtotime($bm->tanggal_masuk)) }}</td>
+ <td class="px-3 py-2 text-gray-900">{{ $bm->barang->sku ?? '-' }}</td>
  <td class="px-3 py-2 text-gray-900">{{ $bm->barang->nama_barang }}</td>
  <td class="px-3 py-2 text-gray-700">{{ $bm->jumlah_barang }}</td>
  </tr>
  @empty
  <tr>
- <td colspan="3" class="px-3 py-4 text-center text-gray-400">Belum ada data.</td>
+ <td colspan="4" class="px-3 py-4 text-center text-gray-400">Belum ada data.</td>
  </tr>
  @endforelse
  </tbody>
@@ -119,6 +121,7 @@
  <thead>
  <tr>
  <th class="px-3 py-2 text-left">Tanggal</th>
+ <th class="px-3 py-2 text-left">SKU</th>
  <th class="px-3 py-2 text-left">Barang</th>
  <th class="px-3 py-2 text-left">Jumlah</th>
  </tr>
@@ -127,12 +130,13 @@
  @forelse($recentKeluar as $bk)
  <tr>
  <td class="px-3 py-2 text-gray-600">{{ date('d M Y', strtotime($bk->tanggal_keluar)) }}</td>
+ <td class="px-3 py-2 text-gray-900">{{ $bk->barang->sku ?? '-' }}</td>
  <td class="px-3 py-2 text-gray-900">{{ $bk->barang->nama_barang }}</td>
  <td class="px-3 py-2 text-gray-700">{{ $bk->jumlah_barang }}</td>
  </tr>
  @empty
  <tr>
- <td colspan="3" class="px-3 py-4 text-center text-gray-400">Belum ada data.</td>
+ <td colspan="4" class="px-3 py-4 text-center text-gray-400">Belum ada data.</td>
  </tr>
  @endforelse
  </tbody>
