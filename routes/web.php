@@ -23,6 +23,14 @@ Route::get('/', [AuthController::class, 'showLogin'])->name('login')->middleware
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/env', function () {
+    return response()->json([
+        'getenv' => getenv(),
+        '_ENV' => $_ENV,
+        '_SERVER' => $_SERVER,
+    ]);
+});
+
 // Rute yang Dilindungi (Wajib Login)
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
