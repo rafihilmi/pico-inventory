@@ -12,7 +12,7 @@ class KategoriController extends Controller
         $search = $request->input('search');
         $query = Kategori::query();
         if ($search) {
-            $query->where('nama', 'like', "%{$search}%")->orWhere('kode', 'like', "%{$search}%");
+            $query->where('nama', 'ilike', "%{$search}%")->orWhere('kode', 'ilike', "%{$search}%");
         }
         $kategoris = $query->get();
         return view('kategori.index', compact('kategoris', 'search'));

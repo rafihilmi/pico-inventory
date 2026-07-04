@@ -19,9 +19,10 @@ class BarangMasukController extends Controller
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->whereHas('barang', function($q2) use ($search) {
-                    $q2->where('nama_barang', 'like', "%{$search}%");
+                    $q2->where('nama_barang', 'ilike', "%{$search}%")
+                       ->orWhere('sku', 'ilike', "%{$search}%");
                 })->orWhereHas('supplier', function($q2) use ($search) {
-                    $q2->where('nama_supplier', 'like', "%{$search}%");
+                    $q2->where('nama_supplier', 'ilike', "%{$search}%");
                 });
             });
         }

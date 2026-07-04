@@ -12,7 +12,7 @@ class PelangganController extends Controller
         $search = $request->input('search');
         $query = Pelanggan::query();
         if ($search) {
-            $query->where('nama_pelanggan', 'like', "%{$search}%");
+            $query->where('nama_pelanggan', 'ilike', "%{$search}%");
         }
         $pelanggans = $query->get();
         return view('pelanggan.index', compact('pelanggans', 'search'));

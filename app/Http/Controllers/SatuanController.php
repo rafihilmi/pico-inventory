@@ -12,7 +12,7 @@ class SatuanController extends Controller
         $search = $request->input('search');
         $query = Satuan::query();
         if ($search) {
-            $query->where('nama', 'like', "%{$search}%")->orWhere('kode', 'like', "%{$search}%");
+            $query->where('nama', 'ilike', "%{$search}%")->orWhere('kode', 'ilike', "%{$search}%");
         }
         $satuans = $query->get();
         return view('satuan.index', compact('satuans', 'search'));

@@ -17,7 +17,10 @@ class BarangController extends Controller
         $query = Barang::with(['kategori', 'satuan']);
         
         if ($search) {
-            $query->where('nama_barang', 'like', "%{$search}%");
+            $query->where(function($q) use ($search) {
+                $q->where('nama_barang', 'ilike', "%{$search}%")
+                  ->orWhere('sku', 'ilike', "%{$search}%");
+            });
         }
         
         if ($categoryFilter) {

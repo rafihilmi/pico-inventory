@@ -11,7 +11,7 @@ class SupplierController extends Controller
         $search = $request->input('search');
         $query = Supplier::query();
         if ($search) {
-            $query->where('nama_supplier', 'like', "%{$search}%");
+            $query->where('nama_supplier', 'ilike', "%{$search}%");
         }
         $suppliers = $query->get();
         return view('supplier.index', compact('suppliers', 'search'));
