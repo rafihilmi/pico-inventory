@@ -28,7 +28,12 @@
                 <button @click="show = false" class="text-red-500 hover:text-red-700 font-bold text-xl">&times;</button>
             </div>
             @endif
-
+            <div class="flex justify-end items-center mb-6">
+                <form action="{{ route('barang.index') }}" method="GET" class="flex items-center gap-2 w-fit">
+                    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Cari..." class="w-72 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]">
+                    <button type="submit" class="bg-[#3c8dbc] hover:bg-[#367fa9] text-white px-3 py-1.5 btn-sq text-sm">Cari</button>
+                </form>
+            </div>
  <!-- Stat Cards -->
  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
  <!-- Total Barang -->
