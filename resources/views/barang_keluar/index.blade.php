@@ -117,7 +117,7 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Item Inventory</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <select name="id_barang" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             <option value="" disabled selected>-- Pilih Item --</option>
                             @foreach($barangs as $b)
                             <option value="{{ $b->id_barang }}">[{{ $b->sku ?? '-' }}] {{ $b->nama_barang }} (Stok: {{ $b->stok }})</option>
@@ -128,7 +128,7 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Pelanggan</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_pelanggan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <select name="id_pelanggan" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             <option value="" disabled selected>-- Pilih Pelanggan --</option>
                             @foreach($pelanggans as $p)
                             <option value="{{ $p->id_pelanggan }}">{{ $p->nama_pelanggan }}</option>
@@ -139,13 +139,13 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Tanggal Keluar</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <input type="date" name="tanggal_keluar" value="{{ date('Y-m-d') }}" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <input type="date" name="tanggal_keluar" value="{{ date('Y-m-d') }}" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                     </div>
 
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Kuantitas</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="jumlah_barang" min="1" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <input type="number" name="jumlah_barang" min="1" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                     </div>
                 </div>
 
@@ -181,7 +181,7 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Item Inventory</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_barang" x-model="editData.id_barang" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <select name="id_barang" x-model="editData.id_barang" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             @foreach($barangs as $b)
                             <option value="{{ $b->id_barang }}">[{{ $b->sku ?? '-' }}] {{ $b->nama_barang }}</option>
                             @endforeach
@@ -191,7 +191,7 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Pelanggan</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <select name="id_pelanggan" x-model="editData.id_pelanggan" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <select name="id_pelanggan" x-model="editData.id_pelanggan" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                             @foreach($pelanggans as $p)
                             <option value="{{ $p->id_pelanggan }}">{{ $p->nama_pelanggan }}</option>
                             @endforeach
@@ -201,13 +201,13 @@
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Tanggal Keluar</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <input type="date" name="tanggal_keluar" x-model="editData.tanggal_keluar" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <input type="date" name="tanggal_keluar" x-model="editData.tanggal_keluar" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                     </div>
 
                     <div class="flex items-center">
                         <label class="w-32 text-sm text-gray-600 shrink-0">Kuantitas</label>
                         <span class="mr-2 text-gray-600">:</span>
-                        <input type="number" name="jumlah_barang" x-model="editData.jumlah_barang" min="1" class="flex-1 border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
+                        <input type="number" name="jumlah_barang" x-model="editData.jumlah_barang" min="1" class="flex-1 w-full border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:border-[#3c8dbc]" required>
                     </div>
                 </div>
 
